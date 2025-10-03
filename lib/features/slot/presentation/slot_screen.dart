@@ -33,6 +33,12 @@ class SlotScreen extends ConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              /// 🔽 グラフを一番上に固定
+              SlumpGraph(height: 220),
+
+              const SizedBox(height: 12),
+
+              /// ステータスカード群
               Wrap(
                 alignment: WrapAlignment.center,
                 spacing: 16,
@@ -45,9 +51,10 @@ class SlotScreen extends ConsumerWidget {
                   _StatCard(label: '払出', value: '${state.payout}'),
                 ],
               ),
+
               const SizedBox(height: 12),
-              SlumpGraph(height: 220),
-              const SizedBox(height: 12),
+
+              /// 小役チップ群
               Wrap(
                 alignment: WrapAlignment.center,
                 spacing: 12,
@@ -61,7 +68,10 @@ class SlotScreen extends ConsumerWidget {
                   _StatChip('AT', state.atCount),
                 ],
               ),
+
               const SizedBox(height: 24),
+
+              /// レバーON ボタン
               ElevatedButton.icon(
                 onPressed: controller.nextGame,
                 icon: const Icon(Icons.sports_esports),
@@ -70,7 +80,10 @@ class SlotScreen extends ConsumerWidget {
                   minimumSize: const Size(220, 48),
                 ),
               ),
+
               const SizedBox(height: 8),
+
+              /// 直前役
               Text('直前役: ${state.lastRole.name}'),
             ],
           ),

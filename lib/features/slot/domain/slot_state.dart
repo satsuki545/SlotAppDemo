@@ -4,6 +4,7 @@ class SlotState {
   final int gameCount; // 現在のモード内ゲーム数（ボーナスは10G管理）
   final SmallRole lastRole; // 直前の小役
   final GameMode gameMode; // 現在モード
+  final GameMode? prevMode;
 
   // 追加：メダル/統計
   final int inserted; // 累計投入
@@ -30,12 +31,14 @@ class SlotState {
     required this.replayCount,
     required this.suikaCount,
     required this.cherryCount,
+    this.prevMode,
   });
 
   static const initial = SlotState(
     gameCount: 0,
     lastRole: SmallRole.none,
     gameMode: GameMode.normal,
+    prevMode: null,
     inserted: 0,
     payout: 0,
     bonusCount: 0,
@@ -50,6 +53,7 @@ class SlotState {
     int? gameCount,
     SmallRole? lastRole,
     GameMode? gameMode,
+    GameMode? prevMode,
     int? inserted,
     int? payout,
     int? bonusCount,
@@ -63,6 +67,7 @@ class SlotState {
       gameCount: gameCount ?? this.gameCount,
       lastRole: lastRole ?? this.lastRole,
       gameMode: gameMode ?? this.gameMode,
+      prevMode: prevMode ?? this.prevMode,
       inserted: inserted ?? this.inserted,
       payout: payout ?? this.payout,
       bonusCount: bonusCount ?? this.bonusCount,
